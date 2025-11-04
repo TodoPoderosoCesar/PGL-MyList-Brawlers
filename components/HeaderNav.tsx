@@ -6,16 +6,26 @@ export default function HeaderNav() {
 
     return (
         <View style={styles.header}>
-            <Pressable>
-                <Ionicons name="add-circle-outline" size={30} color="black"/>
-            </Pressable>
+          <Ionicons name="add-circle-outline" 
+          size={50} color="black" 
+          style={styles.button}
+          onPress={() => alert('Has pulsado el icono')}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
   header: {
-    flex: 4,
-    backgroundColor: '#000',
+    flex: 1.5,
+    flexDirection: 'row',
+    backgroundColor: '#b2d2ffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#384d6aff',
+    alignContent: 'center',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: 40,
+    marginRight: 20,
   },
 });
