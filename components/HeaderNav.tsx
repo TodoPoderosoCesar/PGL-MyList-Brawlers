@@ -2,16 +2,20 @@ import React from 'react';
 import { Pressable, View, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function HeaderNav() {
+type HeaderNavProps = {
+  setDisplayAddBrawlerModal: () => void
+}
 
-    return (
-        <View style={styles.header}>
-          <Ionicons name="add-circle-outline" 
-          size={50} color="black" 
-          style={styles.button}
-          onPress={() => alert('Por aqui te va a dejar crear un brawler nuevo')}/>
-        </View>
-    )
+export default function HeaderNav({setDisplayAddBrawlerModal}:HeaderNavProps) {
+  // Estoy descomponiendo los atributos/propiedades del objeto.
+  return (
+      <View style={styles.header}>
+        <Ionicons name="add-circle-outline" 
+        size={50} color="black" 
+        style={styles.button}
+        onPress={setDisplayAddBrawlerModal}/>
+      </View>
+  )
 }
 
 const styles = StyleSheet.create({
