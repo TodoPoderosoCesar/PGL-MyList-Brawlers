@@ -9,7 +9,7 @@ export default function HeaderNav() {
           <Ionicons name="add-circle-outline" 
           size={50} color="black" 
           style={styles.button}
-          onPress={() => alert('Has pulsado el icono')}/>
+          onPress={() => alert('Por aqui te va a dejar crear un brawler nuevo')}/>
         </View>
     )
 }
