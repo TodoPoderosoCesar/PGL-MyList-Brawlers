@@ -1,23 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
 import HeaderNav from './components/HeaderNav';
-import React from 'react';
+import React, { useState } from 'react';
+import { BRAWLER_DATA } from './data/brawlers-data';
+import Brawler from './components/Brawler';
+import { BrawlerItem } from './types/BrawlerItem';
 
 
 export default function App() {
+  
+  const [brawlers, setBrawlers] = useState<BrawlerItem[]>(BRAWLER_DATA);
+
+   const handleDelete = (name: string) => {
+    setBrawlers((prevBrawlers) => prevBrawlers.filter((b) => b.name !== name));
+  };
+
   return (
     <>
-      
       <HeaderNav />
       
       <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-        <StatusBar style="auto" />
+        <FlatList
+          data={brawlers}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => `${item.name}-${index}`}
+          renderItem={({ item }) => (
+            <Brawler
+              image={item.image}
+              name={item.name}
+              rarity={item.rarity}
+              credits={item.credits}
+              onDelete={handleDelete}
+            />
+          )}
+        />
       </View>
 
-      <View style={styles.footer}>
-
-      </View>
+      <View style={styles.footer}></View>
     </>
   );
 }
