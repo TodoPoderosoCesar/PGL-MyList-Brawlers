@@ -38,29 +38,29 @@ export default function App() {
             animationType="slide"
             transparent={true}
             visible={displayAddBrawlerModal}
-            onRequestClose={() => setDisplayAddBrawlerModal(false)} // NUEVO
+            onRequestClose={() => setDisplayAddBrawlerModal(false)}
         >
-            <View style={styles.overlay}> {/* NUEVO */}
-            <View style={styles.modalContainer}> {/* NUEVO */}
-                <Text style={styles.modalTitle}>Agregar nuevo Brawler</Text> {/* NUEVO */}
+            <View style={styles.overlay}>
+            <View style={styles.modalContainer}>
+                <Text style={styles.modalTitle}>Agregar nuevo Brawler</Text>
 
-                <Text style={styles.label}>Nombre:</Text> {/* NUEVO */}
+                <Text style={styles.label}>Nombre:</Text>
                 <TextInput
                 style={styles.input}
                 placeholder="Introduce el nombre"
                 value={brawlerForm.name}
-                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, name: text })} // NUEVO
+                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, name: text })}
                 />
 
-                <Text style={styles.label}>Rareza:</Text> {/* NUEVO */}
+                <Text style={styles.label}>Rareza:</Text>
                 <TextInput
                 style={styles.input}
                 placeholder="Ejemplo: épico, mítico, legendario..."
                 value={brawlerForm.rarity}
-                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, rarity: text })} // NUEVO
+                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, rarity: text })}
                 />
 
-                <Text style={styles.label}>Créditos:</Text> {/* NUEVO */}
+                <Text style={styles.label}>Créditos:</Text>
                 <TextInput
                 style={styles.input}
                 placeholder="Introduce los créditos"
@@ -68,10 +68,10 @@ export default function App() {
                 value={brawlerForm.credits.toString()}
                 onChangeText={(text) =>
                     setBrawlerForm({ ...brawlerForm, credits: parseInt(text) || 0 })
-                } // NUEVO
+                }
                 />
 
-                <View style={styles.modalButtons}> {/* NUEVO */}
+                <View style={styles.modalButtons}>
                 <Pressable
                     style={[styles.button, styles.saveButton]}
                     onPress={() => addBrawler(brawlerForm)}
@@ -124,54 +124,54 @@ const styles = StyleSheet.create({
     borderTopColor: '#384d6aff',
   },
   /* Ahora css del modal */
-  overlay: { // NUEVO
+  overlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
-  modalContainer: { // NUEVO
+  modalContainer: {
     width: '85%',
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
   },
-  modalTitle: { // NUEVO
+  modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 15,
   },
-  label: { // NUEVO
+  label: {
     fontWeight: 'bold',
     marginTop: 10,
   },
-  input: { // NUEVO
+  input: {
     borderWidth: 1,
     borderColor: '#999',
     borderRadius: 5,
     padding: 8,
     marginTop: 5,
   },
-  modalButtons: { // NUEVO
+  modalButtons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 20,
   },
-  button: { // NUEVO
+  button: {
     flex: 1,
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',
     marginHorizontal: 5,
   },
-  saveButton: { // NUEVO
+  saveButton: {
     backgroundColor: '#4CAF50',
   },
-  cancelButton: { // NUEVO
+  cancelButton: {
     backgroundColor: '#f44336',
   },
-  buttonText: { // NUEVO
+  buttonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
