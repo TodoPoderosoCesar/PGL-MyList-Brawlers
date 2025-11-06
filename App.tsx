@@ -52,13 +52,12 @@ export default function App() {
                 onChangeText={(text) => setBrawlerForm({ ...brawlerForm, name: text })}
                 />
 
-                <Text style={styles.label}>Rareza:</Text>
+                <Text style={styles.label}>Rareza (Especial, Superespecial, Épico, Mítico, Legendario y Ultralegendario):</Text>
                 <TextInput
                 style={styles.input}
-                placeholder="Ejemplo: épico, mítico, legendario..."
+                placeholder="Rareza"
                 value={brawlerForm.rarity}
-                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, rarity: text })}
-                />
+                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, rarity: text })}/>
 
                 <Text style={styles.label}>Créditos:</Text>
                 <TextInput
@@ -66,25 +65,18 @@ export default function App() {
                 placeholder="Introduce los créditos"
                 keyboardType="numeric"
                 value={brawlerForm.credits.toString()}
-                onChangeText={(text) =>
-                    setBrawlerForm({ ...brawlerForm, credits: parseInt(text) || 0 })
-                }
-                />
+                onChangeText={(text) => setBrawlerForm({ ...brawlerForm, credits: parseInt(text) || 0 })} />
 
                 <View style={styles.modalButtons}>
-                <Pressable
-                    style={[styles.button, styles.saveButton]}
-                    onPress={() => addBrawler(brawlerForm)}
-                >
-                    <Text style={styles.buttonText}>Guardar</Text>
-                </Pressable>
 
-                <Pressable
-                    style={[styles.button, styles.cancelButton]}
-                    onPress={() => setDisplayAddBrawlerModal(false)}
-                >
+                  <Pressable style={[styles.button, styles.saveButton]} onPress={() => addBrawler(brawlerForm)}>
+                    <Text style={styles.buttonText}>Guardar</Text>
+                  </Pressable>
+
+                  <Pressable style={[styles.button, styles.cancelButton]} onPress={() => setDisplayAddBrawlerModal(false)}>
                     <Text style={styles.buttonText}>Cancelar</Text>
-                </Pressable>
+                  </Pressable>
+
                 </View>
             </View>
             </View>
@@ -128,10 +120,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: '#00000030',
   },
   modalContainer: {
-    width: '85%',
+    width: 350,
     backgroundColor: '#fff',
     borderRadius: 10,
     padding: 20,
