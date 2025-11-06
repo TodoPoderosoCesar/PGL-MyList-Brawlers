@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Text, View, Pressable, Alert, ImageSourcePropType } from 'react-native'
+import { StyleSheet, Image, Text, View, Pressable, Alert, ImageSourcePropType, TextInput } from 'react-native'
 import React from 'react'
 import { BrawlerItem } from '../types/BrawlerItem';
 
