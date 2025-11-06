@@ -34,13 +34,8 @@ export default function App() {
       <HeaderNav setDisplayAddBrawlerModal={() => setDisplayAddBrawlerModal(!displayAddBrawlerModal)}/>
       
       <View style={styles.container}>
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={displayAddBrawlerModal}
-            onRequestClose={() => setDisplayAddBrawlerModal(false)}
-        >
-            <View style={styles.overlay}>
+        <Modal animationType="slide" transparent={true} visible={displayAddBrawlerModal} onRequestClose={() => setDisplayAddBrawlerModal(false)}>
+          <View style={styles.overlay}>
             <View style={styles.modalContainer}>
                 <Text style={styles.modalTitle}>Agregar nuevo Brawler</Text>
 
@@ -79,8 +74,9 @@ export default function App() {
 
                 </View>
             </View>
-            </View>
+          </View>
         </Modal>
+
         <FlatList
           data={brawlers}
           showsVerticalScrollIndicator={false}
@@ -95,8 +91,8 @@ export default function App() {
             />
           )}
         />
-      </View>
 
+      </View>
       <View style={styles.footer}></View>
     </>
   );
