@@ -72,7 +72,7 @@ export default function App() {
                     <Text style={styles.buttonText}>Cancelar</Text>
                   </Pressable>
 
-                </View>
+                </View> 
             </View>
           </View>
         </Modal>
@@ -90,6 +90,9 @@ export default function App() {
               onDelete={handleDelete}
             />
           )}
+          ListEmptyComponent = {(
+          <Text style={styles.emptyText}>Sin items que desplegar</Text>
+        )}
         />
 
       </View>
@@ -163,5 +166,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
+  emptyText: {
+    textAlign: 'center', 
+    marginTop: 80, 
+    fontSize: 16, 
+    color: '#000' ,
+    fontWeight: 'bold',
+  }
 });
 
