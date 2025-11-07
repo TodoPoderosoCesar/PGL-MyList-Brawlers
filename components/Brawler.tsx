@@ -1,8 +1,5 @@
 import { StyleSheet, Image, Text, View, Pressable, Alert, ImageSourcePropType, TextInput } from 'react-native'
 import React from 'react'
-import { BrawlerItem } from '../types/BrawlerItem';
-
-// Destacar el uso de BrawlerItem para los props... GENIALIDAD.
 
 type BrawlerProps = {
     image: ImageSourcePropType,
