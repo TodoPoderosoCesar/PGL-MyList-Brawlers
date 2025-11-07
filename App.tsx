@@ -12,12 +12,12 @@ export default function App() {
   const [displayAddBrawlerModal, setDisplayAddBrawlerModal] = useState<boolean>(false);
   const [brawlers, setBrawlers] = useState<BrawlerItem[]>(BRAWLER_DATA);
   const [brawlerForm, setBrawlerForm] = useState<BrawlerItem>({
-    image: '',
+    image: require('./assets/interrogante.png'),
     name: '',
     rarity: '',
     credits: 0, 
   });
-  // inicializado como objeto vacio
+  // inicializado como objeto vacio pero con imagen.
    
   const handleDelete = (name: string) => {
     setBrawlers((prevBrawlers) => prevBrawlers.filter((b) => b.name !== name));
@@ -47,7 +47,7 @@ export default function App() {
                 onChangeText={(text) => setBrawlerForm({ ...brawlerForm, name: text })}
                 />
 
-                <Text style={styles.label}>Rareza (Especial, Superespecial, Épico, Mítico, Legendario y Ultralegendario):</Text>
+                <Text style={styles.label}>Rareza (especial, superespecial, épico, mítico, legendario y ultralegendario):</Text>
                 <TextInput
                 style={styles.input}
                 placeholder="Rareza"
