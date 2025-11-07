@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
   header: {
     flex: 1.5,
     flexDirection: 'row',
-    backgroundColor: '#b2d2ffff',
+    backgroundColor: '#7d82e2ff',
     borderBottomWidth: 1,
-    borderBottomColor: '#384d6aff',
+    borderBottomColor: '#000',
     alignContent: 'center',
     justifyContent: 'flex-end',
   },

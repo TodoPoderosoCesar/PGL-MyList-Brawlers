@@ -104,15 +104,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 12,
-    backgroundColor: '#fcffb2ff',
+    backgroundColor: '#fdf5adff',
     alignItems: 'center',
     justifyContent: 'center',
   },
   footer: {
     flex: 1,
-    backgroundColor: '#b2d2ffff',
+    backgroundColor: '#7d82e2ff',
     borderTopWidth: 1,
-    borderTopColor: '#384d6aff',
+    borderTopColor: '#000',
   },
   /* Ahora css del modal */
   overlay: {
