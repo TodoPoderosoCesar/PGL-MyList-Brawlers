@@ -1,16 +1,18 @@
-import { StyleSheet, Image, Text, View, Pressable, Alert, ImageSourcePropType, TextInput } from 'react-native'
-import React from 'react'
+import { StyleSheet, Image, Text, View, Pressable, Alert, ImageSourcePropType } from 'react-native';
+import React from 'react';
+import { BrawlerItem } from '../types/BrawlerItem';
 
 type BrawlerProps = {
-    image: ImageSourcePropType,
-    name: string,
-    rarity: string,
-    credits: number,
-    onDelete: (name: string) => void;
+    image: ImageSourcePropType;
+    name: string;
+    rarity: string;
+    credits: number;
+    onDelete: (id: string) => void;
+    onEdit: (brawler: BrawlerItem) => void;
+    id: string;
 };
 
-const Brawler: React.FC<BrawlerProps> = (props) => {
-  const { image, name, rarity, credits, onDelete } = props;
+const Brawler: React.FC<BrawlerProps> = ({ image, name, rarity, credits, onDelete, onEdit, id }) => {
 
   const confirmDelete = () => {
     Alert.alert(
@@ -21,30 +23,45 @@ const Brawler: React.FC<BrawlerProps> = (props) => {
         {
           text: 'Eliminar',
           style: 'destructive',
-          onPress: () => onDelete(name),
+          onPress: () => onDelete(id),
         },
       ]
     );
   };
 
+  const rarityStyles: Record<string, object> = {
+    ultralegendario: styles.ultralegendario,
+    legendario: styles.legendario,
+    mítico: styles.mitico,
+    épico: styles.epico,
+    superespecial: styles.superespecial,
+    especial: styles.especial,
+  };
+
   return (
     <View style={styles.container}>
-        <View style={styles.left}>
-            <View style={styles.header}>
-                <Image source={image} style={styles.headerImage}/>
-                <Text style={[styles.headerTitle, styles[rarity]]}>{name}</Text>
-            </View>
-            <Text style={styles.bodyInfo}>categoría: {rarity}</Text>
-            <Text style={styles.bodyInfo}>Créditos: {credits}</Text>
+      <View style={styles.left}>
+        <View style={styles.header}>
+          <Image source={image} style={styles.headerImage} />
+          <Text style={[styles.headerTitle, rarityStyles[rarity]]}>{name}</Text>
         </View>
-        <View style={styles.right}>
-            <Pressable onPress={() => alert('Por aqui te va a dejar editar el brawler')}>
-                <Text style={styles.edit}>editar</Text>
-            </Pressable>
-            <Pressable onPress={confirmDelete}>
-                <Text style={styles.eliminate}>eliminar</Text>
-            </Pressable>
-        </View>
+        <Text style={styles.bodyInfo}>Categoría: {rarity}</Text>
+        <Text style={styles.bodyInfo}>Créditos: {credits}</Text>
+      </View>
+      <View style={styles.right}>
+        <Pressable
+          style={({ pressed }) => [styles.actionButton, styles.editButton, pressed && styles.pressed]}
+          onPress={() => onEdit({ id, image, name, rarity, credits })}
+        >
+          <Text style={styles.buttonText}>Editar</Text>
+        </Pressable>
+        <Pressable
+          style={({ pressed }) => [styles.actionButton, styles.deleteButton, pressed && styles.pressed]}
+          onPress={confirmDelete}
+        >
+          <Text style={styles.buttonText}>Eliminar</Text>
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -53,96 +70,78 @@ export default Brawler;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 5,
         backgroundColor: '#fff',
         margin: 5,
         marginTop: 15,
         width: 380,
         borderRadius: 10,
         elevation: 5,
-        height: 250,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        height: 200,
         flexDirection: 'row',
     },
     left: {
-        marginLeft: 5,
-        width: 200,
+        flex: 1,
+        marginLeft: 8,
+        justifyContent: 'center',
     },
     right: {
-        marginRight: 5,
-        marginLeft: 5,
-        width: 160,
+        width: 120,
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 12,
+        paddingRight: 8,
     },
     header: {
         alignItems: 'center',
-        margin: 0
     },
     headerImage: {
-        width: 150,
-        height: 110,
+        width: 120,
+        height: 90,
         resizeMode: 'contain',
     },
     headerTitle: {
-        fontSize: 30,
+        fontSize: 22,
         textTransform: 'uppercase',
         fontWeight: 'bold',
-        marginTop: 0
+        textAlign: 'center',
     },
     bodyInfo: {
-        fontSize: 16,
+        fontSize: 14,
         marginLeft: 5,
         textTransform: 'capitalize',
-        marginTop: 10,
-        justifyContent: 'center',
+        marginTop: 6,
+        color: '#333',
     },
-    edit: {
-        borderWidth: 1,
-        textAlign: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginTop: 40,
-        marginBottom: 30,
-        marginLeft: 5,
-        marginRight: 5,
-        borderRadius: 10,
-        textTransform: 'uppercase',
-        fontWeight: 'bold',
+    actionButton: {
+        width: '90%',
+        paddingVertical: 10,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    editButton: {
+        backgroundColor: '#4a90d9',
+    },
+    deleteButton: {
+        backgroundColor: '#d50000',
+    },
+    pressed: {
+        opacity: 0.75,
+    },
+    buttonText: {
         color: '#fff',
-        backgroundColor: '#b2d2ffff',
-        fontSize: 16
-    },
-    eliminate: {
-        borderWidth: 1,
-        textAlign: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginTop: 40,
-        marginBottom: 30,
-        marginLeft: 5,
-        marginRight: 5,
-        borderRadius: 10,
-        textTransform: 'uppercase',
         fontWeight: 'bold',
-        color: '#fff',
-        backgroundColor: '#d50000ff',
-        fontSize: 16
+        fontSize: 14,
+        textTransform: 'uppercase',
     },
-    // ******* ESTILOS DE LA RAREZA ********************************************************
-    ultralegendario: {
-        color: '#000'
-    },
-    legendario: {
-        color: '#ffdd00ff'
-    },
-    mítico: {
-        color: '#ff0000ff'
-    },
-    épico: {
-        color: '#ff00f2ff'
-    },
-    superespecial: {
-        color: '#0011ffff'
-    },
-    especial: {
-        color: '#1cec09ff'
-    }
+    // Estilos de rareza
+    ultralegendario: { color: '#555' },
+    legendario: { color: '#c8a800' },
+    mitico: { color: '#cc0000' },
+    epico: { color: '#cc00cc' },
+    superespecial: { color: '#0011ff' },
+    especial: { color: '#0a9900' },
 });
